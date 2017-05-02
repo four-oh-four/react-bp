@@ -1,0 +1,23 @@
+.counterBox {
+	border: 1px solid black;
+	text-align: center;
+	vertical-align: middle;
+	padding: 5px;
+	width: 50px;
+	margin: 0px auto;
+	border-radius: 5px;
+}
+
+.inputs {
+	margin: 10px;
+}
+
+input[type=number] {
+	margin: 0px 5px;
+
+	text-align: center;
+}
+
+input[type=submit] {
+	margin: 5px;
+}
