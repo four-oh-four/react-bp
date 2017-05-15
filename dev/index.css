@@ -1,0 +1,61 @@
+.counterBox {
+	border: 1px solid black;
+	text-align: center;
+	vertical-align: middle;
+	padding: 5px;
+	width: 50px;
+	margin: 0px auto;
+	border-radius: 5px;
+}
+
+.inputs {
+	margin: 10px;
+}
+
+input[type=number] {
+	margin: 0px 5px;
+
+	text-align: center;
+}
+
+input[type=submit] {
+	margin: 5px;
+}
+
+.box {
+	border: 1px solid #858587;
+	padding: 1em;
+	border-radius: 5px;
+	width: 800px;
+	margin-top: 1em;
+}
+
+
+.innerbox{
+	background: #fff;
+	color: #337ab7;
+	width: 120px;
+    height: 60px;
+    text-align: center;
+    vertical-align: middle;
+	border: 1px solid #858587;
+	padding: 1em;
+	border-radius: 5px;
+	margin: 1em;
+}
+.instructions {
+	text-align: center;
+	background: #337ab7;
+	padding: 1em;
+	color: #fff;
+}
+
+.important {
+	font-weight: bold;
+}
+.paddingDiv{
+	padding-top: 1em;
+}
+.marginDiv{
+	margin: 1em;
+}
