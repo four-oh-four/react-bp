@@ -8,7 +8,7 @@ export default class Counter extends React.Component {
     this.intervalId = null
 
     this.defaultState = {
-      maxCount: 5,
+      maxCount: 10,
       timeout: 1000,
       currentCount: 0,
       controlsVisible: false
@@ -43,7 +43,6 @@ export default class Counter extends React.Component {
   handleStopInterval () {
     clearInterval(this.intervalId)
     this.intervalId = null
-    this.setState({currentCount: 0})
   }
 
   handleReset () {
@@ -64,8 +63,8 @@ export default class Counter extends React.Component {
       if (this.intervalId) {
         this.handleStopInterval()
       }
+      this.setState({controlsVisible: false, currentCount: 0})
       this.handleStartInterval()
-      this.setState({controlsVisible: false})
       this.props.counterVals({maxCount: this.state.maxCount, timeout: this.state.timeout})
     } else {
       this.handleStopInterval()
