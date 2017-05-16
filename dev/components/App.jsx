@@ -55,7 +55,7 @@ export default class App extends React.Component {
     return (
      <div id="container">
 
-        <h1>Counter Exercise!</h1>
+        <h1>Counter Exercise</h1>
 
         {[...Array(this.state.numCounters)].map((x, i) =>
           <Counter keyVal={i} doStartAll={this.state.startAll} startAllDone={this.handleStartAllDone.bind(this)} />

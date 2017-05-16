@@ -16,11 +16,13 @@ export default class Counter extends React.Component {
   }
 
   handleMaxChange (evt) {
+    evt.preventDefault()
     const newMax = parseInt(evt.target.value)
     this.setState({maxCount: newMax})
   }
 
   handleTimeoutChange (evt) {
+    evt.preventDefault()
     const newTimeout = parseInt(evt.target.value)
     this.setState({timeout: newTimeout})
   }
@@ -64,21 +66,21 @@ export default class Counter extends React.Component {
     return (
        <div className="counter-container" key={this.props.keyVal}>
          <div className={controlsClass}>
-           Max count: <input type="text" size="4" value={this.state.maxCount} onChange={this.handleMaxChange.bind(this)} />&nbsp;
-           Interval: <input type="text" size="7" value={this.state.timeout} onChange={this.handleTimeoutChange.bind(this)} />
+           Reps: <input type="number" className="reps" min="1" max="999" pattern="[0-9]*" value={this.state.maxCount} onChange={this.handleMaxChange.bind(this)} />&nbsp;
+           Interval (ms): <input type="number" className="interval" min="1" max="10000" value={this.state.timeout} onChange={this.handleTimeoutChange.bind(this)} />
          </div>
          <div className="output">
-           <div className="start-interval-link" onClick={this.handleStartInterval.bind(this)}>
+           <div className="start-interval-link" onClick={this.handleStartInterval.bind(this)} title="Start">
              <i className="fa fa-play-circle"></i>
            </div>
-           <div className="stop-interval-link" onClick={this.handleStopInterval.bind(this)}>
+           <div className="stop-interval-link" onClick={this.handleStopInterval.bind(this)} title="Stop">
              <i className="fa fa-stop-circle"></i>
            </div>
            <div className="reset-link" onClick={this.handleReset.bind(this)} title="Reset">
              <i className="fa fa-undo"></i>
            </div>
            <div className="count-txt">Count: {this.state.currentCount}</div>
-           <i className="settings fa fa-cog" onClick={this.showHideSettings.bind(this)}></i>
+           <i className="settings fa fa-cog" title="Settings" onClick={this.showHideSettings.bind(this)}></i>
          </div>
        </div>
     )

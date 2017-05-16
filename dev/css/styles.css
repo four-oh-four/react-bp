@@ -86,7 +86,7 @@ counter-container
   height: 35px; /* 50px */
   padding: 15px 10px 0 10px;
   background: #f7f7f7;
-  font-size: 14px;
+  font-size: 13px;
   border-radius: 12px 0 0 12px;
   -moz-border-radius: 12px 0 0 12px;
   -webkit-border-radius: 12px 0 0 12px;
@@ -95,6 +95,14 @@ counter-container
 
 .counter-container .controls input {
   font-size: 13px;
+}
+
+.counter-container .controls input.reps {
+  width: 45px;
+}
+
+.counter-container .controls input.interval {
+  width: 50px;
 }
 
 .counter-container .output .start-interval-link,
