@@ -1,0 +1,140 @@
+/*
+  Basic styles
+*/
+
+* {
+  font-family: Arial, helvetica, sans-serif;
+}
+
+#container {
+  margin: 0 auto;
+  width: 900px;
+  min-height: 700px;
+}
+
+#container h1 {
+  text-align: center;
+}
+
+#container .qty-btns-wrapper {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#container .qty-btns-wrapper .qty-btn {
+  width: 50px;
+  height: 42px;
+  padding-top: 8px;
+  color: #555;
+  background: #ffcc00;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px;
+  display:inline-block;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+#container .qty-btns-wrapper .qty-btn + .qty-btn { margin-left: 20px; }
+
+#container .qty-btns-wrapper .qty-btn:hover {
+  cursor: pointer;
+}
+
+/*
+counter-container
+  .controls
+  .output
+    .start-interval-link
+    .reset-link
+    .count-txt
+*/
+
+.counter-container {
+  position: relative;
+  width: 300px;
+  height: 50px;
+  margin: 0 auto 20px auto;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px;
+}
+
+.counter-container:hover {
+
+}
+
+.counter-container * {
+  font-size: 16px;
+}
+
+.hide {
+  visibility: hidden;
+  display: none;
+}
+
+.show {
+  visibility: visible;
+  display: ""
+}
+
+.counter-container .controls {
+  position: absolute;
+  width: 235px;
+  height: 35px; /* 50px */
+  padding: 15px 10px 0 10px;
+  background: #f7f7f7;
+  font-size: 14px;
+  border-radius: 12px 0 0 12px;
+  -moz-border-radius: 12px 0 0 12px;
+  -webkit-border-radius: 12px 0 0 12px;
+  border-right: 2px solid #ccc;
+}
+
+.counter-container .controls input {
+  font-size: 13px;
+}
+
+.counter-container .output .start-interval-link,
+.counter-container .output .stop-interval-link,
+.counter-container .output .reset-link {
+  float: left;
+  padding: 16px 0 0 18px;
+  margin-right: 10px;
+  color: #777;
+}
+
+.counter-container .output .start-interval-link i,
+.counter-container .output .stop-interval-link i,
+.counter-container .output .reset-link i
+{
+  font-size: 18px;
+}
+
+.counter-container .output .start-interval-link:hover,
+.counter-container .output .stop-interval-link:hover,
+.counter-container .output .reset-link:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  color: #000;
+}
+
+.counter-container .output .count-txt {
+  float: left;
+  padding: 16px 0 0 18px;
+}
+
+.counter-container .output .settings {
+  float: right;
+  padding: 0;
+  margin: 12px 14px 0 0;
+  font-size: 24px;
+  color: #777;
+}
+
+.counter-container .output .settings:hover {
+  cursor: pointer;
+  color: #000;
+}
