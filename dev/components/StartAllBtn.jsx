@@ -12,6 +12,12 @@ export default class StartAllBtn extends React.Component {
     }
   }
 
+  componentWillReceiveProps (nextProps) {
+    if (!nextProps.buttonMode) {
+      this.setState({mode: "start"})
+    }
+  }
+
   handleClick () {
     if (this.state.mode == "start") {
       this.props.doStartAll()

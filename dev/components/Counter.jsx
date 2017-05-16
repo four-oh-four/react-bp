@@ -66,6 +66,7 @@ export default class Counter extends React.Component {
       }
       this.handleStartInterval()
       this.setState({controlsVisible: false})
+      this.props.counterVals({maxCount: this.state.maxCount, timeout: this.state.timeout})
     } else {
       this.handleStopInterval()
     }

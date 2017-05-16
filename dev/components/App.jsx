@@ -10,11 +10,14 @@ export default class App extends React.Component {
     super(props)
 
     this.maxCounters = 5
+    this.allCounterData = []
 
     this.decreaseQty = this.decreaseQty.bind(this)
     this.increaseQty = this.increaseQty.bind(this)
     this.handleStartAll = this.handleStartAll.bind(this)
     this.handleStopAll = this.handleStopAll.bind(this)
+    this.handleStartAllDone = this.handleStartAllDone.bind(this)
+    this.allCounterProps = this.allCounterProps.bind(this)
 
     this.state = {
       numCounters: 2,
@@ -53,8 +56,22 @@ export default class App extends React.Component {
   }
 
   handleStartAllDone () {
-    console.log('App.handleStartAllDone!')
+    this.allCounterData = []
     this.setState({startAll: false})
+  }
+
+  allCounterProps (counterData) {
+    this.allCounterData.push(counterData)
+    let maxExec = 0
+    if (this.allCounterData.length == this.state.numCounters) {
+      this.allCounterData.map(function(o) {
+        let thisExec = o.maxCount * o.timeout
+        if (thisExec > maxExec) {
+          maxExec = thisExec
+        }
+      })
+      setTimeout(this.handleStartAllDone, parseInt(maxExec + 50))
+    }
   }
 
   render() {
@@ -67,13 +84,25 @@ export default class App extends React.Component {
           <Counter key={"ct" + i} keyVal={i}
               doStartAll={this.state.startAll}
               doStopAll={this.state.startAll}
-              startAllDone={this.handleStartAllDone.bind(this)} />
+              startAllDone={this.handleStartAllDone.bind(this)}
+              counterVals={this.allCounterProps} />
         )}
 
         <div className="qty-btns-wrapper">
-          <QtyBtn onClick={this.decreaseQty} btnType="dec" keyVal="qtyDec" onChangeQty={this.handleQtyChange.bind(this)} />
-          <QtyBtn onClick={this.increaseQty} btnType="inc" keyVal="qtyInc" onChangeQty={this.handleQtyChange.bind(this)} />
-          <StartAllBtn doStartAll={this.handleStartAll} doStopAll={this.handleStopAll} keyVal="startBtn" />
+          <QtyBtn
+              onClick={this.decreaseQty}
+              btnType="dec"
+              keyVal="qtyDec"
+              onChangeQty={this.handleQtyChange.bind(this)} />
+          <QtyBtn
+              onClick={this.increaseQty}
+              btnType="inc"
+              keyVal="qtyInc"
+              onChangeQty={this.handleQtyChange.bind(this)} />
+          <StartAllBtn
+              doStartAll={this.handleStartAll}
+              doStopAll={this.handleStopAll} keyVal="startBtn"
+              buttonMode={this.state.startAll} />
         </div>
 
       </div>);
