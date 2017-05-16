@@ -9,9 +9,12 @@ export default class App extends React.Component {
   constructor (props) {
     super(props)
 
+    this.maxCounters = 5
+
     this.decreaseQty = this.decreaseQty.bind(this)
     this.increaseQty = this.increaseQty.bind(this)
     this.handleStartAll = this.handleStartAll.bind(this)
+    this.handleStopAll = this.handleStopAll.bind(this)
 
     this.state = {
       numCounters: 2,
@@ -28,7 +31,7 @@ export default class App extends React.Component {
 
   increaseQty () {
     const newQty = this.state.numCounters + 1
-    if (newQty < 11) {
+    if (newQty < this.maxCounters + 1) {
       this.setState({numCounters: newQty})
     }
   }
@@ -42,8 +45,11 @@ export default class App extends React.Component {
   }
 
   handleStartAll () {
-    console.log('App.handleStartAll!')
     this.setState({startAll: true})
+  }
+
+  handleStopAll () {
+    this.setState({startAll: false})
   }
 
   handleStartAllDone () {
@@ -58,13 +64,16 @@ export default class App extends React.Component {
         <h1>Counter Exercise</h1>
 
         {[...Array(this.state.numCounters)].map((x, i) =>
-          <Counter keyVal={i} doStartAll={this.state.startAll} startAllDone={this.handleStartAllDone.bind(this)} />
+          <Counter key={"ct" + i} keyVal={i}
+              doStartAll={this.state.startAll}
+              doStopAll={this.state.startAll}
+              startAllDone={this.handleStartAllDone.bind(this)} />
         )}
 
         <div className="qty-btns-wrapper">
           <QtyBtn onClick={this.decreaseQty} btnType="dec" keyVal="qtyDec" onChangeQty={this.handleQtyChange.bind(this)} />
           <QtyBtn onClick={this.increaseQty} btnType="inc" keyVal="qtyInc" onChangeQty={this.handleQtyChange.bind(this)} />
-          <StartAllBtn doStartAll={this.handleStartAll} keyVal="startBtn" />
+          <StartAllBtn doStartAll={this.handleStartAll} doStopAll={this.handleStopAll} keyVal="startBtn" />
         </div>
 
       </div>);

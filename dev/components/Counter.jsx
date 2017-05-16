@@ -5,6 +5,8 @@ export default class Counter extends React.Component {
   constructor (props) {
     super(props)
 
+    this.intervalId = null
+
     this.defaultState = {
       maxCount: 5,
       timeout: 1000,
@@ -21,16 +23,16 @@ export default class Counter extends React.Component {
     this.setState({maxCount: newMax})
   }
 
-  handleTimeoutChange (evt) {
+  handleIntervalChange (evt) {
     evt.preventDefault()
-    const newTimeout = parseInt(evt.target.value)
-    this.setState({timeout: newTimeout})
+    const newInterval = parseInt(evt.target.value)
+    this.setState({timeout: newInterval})
   }
 
   doInterval() {
     this.setState({currentCount: this.state.currentCount + 1})
     if(this.state.currentCount == this.state.maxCount) {
-      clearInterval(this.intervalId);
+      this.handleStopInterval()
     }
   }
 
@@ -40,10 +42,12 @@ export default class Counter extends React.Component {
 
   handleStopInterval () {
     clearInterval(this.intervalId)
+    this.intervalId = null
+    this.setState({currentCount: 0})
   }
 
   handleReset () {
-    clearInterval(this.intervalId)
+    this.handleStopInterval()
     this.setState(this.defaultState)
   }
 
@@ -52,12 +56,18 @@ export default class Counter extends React.Component {
   }
 
   componentWillUnmount () {
-    clearInterval(this.intervalId)
+    this.handleReset()
   }
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.doStartAll) {
+      if (this.intervalId) {
+        this.handleStopInterval()
+      }
       this.handleStartInterval()
+      this.setState({controlsVisible: false})
+    } else {
+      this.handleStopInterval()
     }
   }
 
@@ -67,7 +77,7 @@ export default class Counter extends React.Component {
        <div className="counter-container" key={this.props.keyVal}>
          <div className={controlsClass}>
            Reps: <input type="number" className="reps" min="1" max="999" pattern="[0-9]*" value={this.state.maxCount} onChange={this.handleMaxChange.bind(this)} />&nbsp;
-           Interval (ms): <input type="number" className="interval" min="1" max="10000" value={this.state.timeout} onChange={this.handleTimeoutChange.bind(this)} />
+           Interval (ms): <input type="number" className="interval" min="1" max="10000" value={this.state.timeout} onChange={this.handleIntervalChange.bind(this)} />
          </div>
          <div className="output">
            <div className="start-interval-link" onClick={this.handleStartInterval.bind(this)} title="Start">
