@@ -31,7 +31,7 @@ export default class Counter extends React.Component {
 
   doInterval() {
     this.setState({currentCount: this.state.currentCount + 1})
-    if(this.state.currentCount == this.state.maxCount) {
+    if(this.state.currentCount === this.state.maxCount) {
       this.handleStopInterval()
     }
   }
